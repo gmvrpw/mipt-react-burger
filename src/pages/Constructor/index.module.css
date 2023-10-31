@@ -1,0 +1,23 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.ingredients {
+  height: calc(100dvh - 88px);
+  max-width: 600px;
+}
+
+.constructor {
+  height: calc(100dvh - 88px);
+  max-width: 600px;
+}

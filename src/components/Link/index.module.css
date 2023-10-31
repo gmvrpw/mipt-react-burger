@@ -1,0 +1,6 @@
+.link {
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  color: var(--text-inactive-color);
+}
