@@ -19,7 +19,7 @@ const Constructor: React.FC = () => {
       return <p className="text text_type_main-large">{error}</p>;
     }
     return null;
-  }, [ingredients, loading, error]);
+  }, [loading, error]);
 
   return (
     <div className={styles.wrapper}>
@@ -30,16 +30,15 @@ const Constructor: React.FC = () => {
             <>
               <BurgerIngredients className={cn(styles.ingredients, "mr-10")} ingredients={ingredients} />
               <BurgerConstructor className={styles.constructor} scheme={{   
-                topBun: ingredients[0],
-                bottomBun: ingredients[1],
+                bun: ingredients[7],
                 ingredients: [
                   ingredients[5],
                   ingredients[6],
                   ingredients[6],
                   ingredients[6],
-                  ingredients[7],
-                  ingredients[7],
-                  ingredients[7],
+                  ingredients[1],
+                  ingredients[1],
+                  ingredients[1],
                 ].map((value, index) => ({...value, key: index })) // иметируем простановку ключей
               }} />
             </>

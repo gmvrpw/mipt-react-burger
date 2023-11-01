@@ -3,8 +3,7 @@ import { Ingredient } from "../../resources/ingredients/types";
 type IngredientWithKey = Ingredient & { key: number }
 
 export type BurgerScheme = {
-  topBun: Ingredient,
-  bottomBun: Ingredient,
+  bun: Ingredient,
   ingredients: IngredientWithKey[],
 }
 

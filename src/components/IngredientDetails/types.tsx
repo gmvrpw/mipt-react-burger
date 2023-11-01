@@ -1,9 +1,6 @@
+import { Ingredient } from "../../resources/ingredients/types";
+
 export interface IngredientDetailsProps {
-  image: string,
-  name: string,
-  proteins: number,
-  fat: number,
-  carbohydrates: number,
-  calories: number,
+  ingredient: Ingredient,
   className?: string,
 }

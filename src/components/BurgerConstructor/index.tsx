@@ -21,9 +21,9 @@ const BurgerConstructor: React.FC<BurgerConstructorProps> = ({ scheme, className
       <article className={cn(styles.container, "pt-25 pb-10", className)}>
         <DragableConstructorElement
           type="top"
-          thumbnail={scheme.topBun.image_mobile}
-          text={scheme.topBun.name}
-          price={scheme.topBun.price}
+          thumbnail={scheme.bun.image_mobile}
+          text={`${scheme.bun.name} (верх)`}
+          price={scheme.bun.price}
           isLocked={true}
         />
         <div className={cn(styles.ingredients, "mt-4 mb-4")}>
@@ -38,9 +38,9 @@ const BurgerConstructor: React.FC<BurgerConstructorProps> = ({ scheme, className
         </div>
         <DragableConstructorElement
           type="bottom"
-          thumbnail={scheme.bottomBun.image_mobile}
-          text={scheme.bottomBun.name}
-          price={scheme.bottomBun.price}
+          thumbnail={scheme.bun.image_mobile}
+          text={`${scheme.bun.name} (низ)`}
+          price={scheme.bun.price}
           isLocked={true}
         />
         <div className={cn(styles.total, "mt-10")}>
@@ -51,9 +51,9 @@ const BurgerConstructor: React.FC<BurgerConstructorProps> = ({ scheme, className
           <Button htmlType="submit" onClick={open}>Оформить заказ</Button>
         </div>
       </article>
-      <Modal show={showDetails} close={close}>
+      {showDetails && <Modal close={close}>
         <OrderDetails orderNumber={"034536"} className="mt-4 mb-20"/>
-      </Modal>
+      </Modal>}
     </>
   )
 }

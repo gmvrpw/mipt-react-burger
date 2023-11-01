@@ -1,12 +1,7 @@
+import { Ingredient } from "../../resources/ingredients/types";
+
 export interface IngredientCardProps {
-  image: string,
-  image_large: string,
-  price: number,
-  name: string,
-  proteins: number,
-  fat: number,
-  carbohydrates: number,
-  calories: number,
+  ingredient: Ingredient,
   count?: number,
   className?: string,
 }

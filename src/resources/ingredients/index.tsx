@@ -15,10 +15,10 @@ export const useIngredients = (): Resource<Ingredient[]> => {
   const [error, setError] = useState<string | null>(null)
   const [ingredients, setIngredients] = useState<Ingredient[] | undefined>(undefined)
   useEffect(() => {
-    getIngredients().then((data) => {
-      setIngredients(data.data)
-      setLoading(false);
-    }).catch((e: Error) => setError(e.message))
+    getIngredients()
+      .then((data) => setIngredients(data.data))
+      .catch((e: Error) => setError(e.message))
+      .finally(() => setLoading(false))
   }, [])
 
   return [ingredients, loading, error]

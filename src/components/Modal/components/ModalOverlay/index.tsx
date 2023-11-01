@@ -15,7 +15,7 @@ const ModalOverlay: React.FC<ModalOverlayProps> = ({ close, className, children 
     return () => {
       document.removeEventListener("keyup", closeByEscape)
     }
-  })
+  }, [close])
 
   return (
     <div

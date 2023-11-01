@@ -5,15 +5,11 @@ import { componentsTitles, defaultComponentTitle } from './consts';
 import { IngredientDetailsProps } from "./types";
 import styles from './index.module.css';
 
-const IngredientDetail: React.FC<IngredientDetailsProps> = ({ 
-  image, 
-  name, 
-  fat, 
-  calories, 
-  proteins, 
-  carbohydrates, 
+const IngredientDetails: React.FC<IngredientDetailsProps> = ({ 
+  ingredient,
   className 
 }) => {
+  const { image_large, name, calories, proteins, fat, carbohydrates } = ingredient;
   const components = useMemo(() => ([
     { type: "calories", value: calories },
     { type: "proteins", value: proteins },
@@ -23,7 +19,7 @@ const IngredientDetail: React.FC<IngredientDetailsProps> = ({
 
   return(
     <article className={cn(styles.details, className)}>
-      <img src={image} alt={name}/>
+      <img src={image_large} alt={name}/>
       <h1 className={cn(styles.name, "text text_type_main-medium mt-4 mb-8")}>{name}</h1>
       <ul className={styles.components}>
         {components.map(({type, value}, index) => (
@@ -37,4 +33,4 @@ const IngredientDetail: React.FC<IngredientDetailsProps> = ({
   )
 }
 
-export default IngredientDetail;
+export default IngredientDetails;
