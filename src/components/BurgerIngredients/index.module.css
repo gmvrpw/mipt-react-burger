@@ -1,0 +1,16 @@
+.container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+}
+
+.ingredients {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
