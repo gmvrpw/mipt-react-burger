@@ -3,14 +3,29 @@ import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burg
 
 import { DragableConstructorElementProps } from "./types"
 import styles from './index.module.css';
+import { useDrag, useDrop } from 'react-dnd';
+import useBurgerConstructorScheme from '../../store/hooks/burgerConstructorScheme';
 
-const DragableConstructorElement: React.FC<DragableConstructorElementProps> = ({ extraClass, isLocked, ...others }) => {
+const DragableConstructorElement: React.FC<DragableConstructorElementProps> = ({ index, extraClass, isLocked, ...others }) => {
+  const [, { moveIngredient }] = useBurgerConstructorScheme()
+
+  const [, drag] = useDrag(() => ({
+    type: "ingredientSorting",
+    item: { index },
+  }))
+  const [, drop] = useDrop(() => ({
+    accept: "ingredientSorting",
+    drop: (item: { index: number }) => {
+      moveIngredient(item.index, index)
+    }
+  }))
+
   return (
-    <div className={styles.container}>
+    <div ref={(node) => !isLocked && drag(drop(node))} className={styles.container}>
       { !isLocked ? <DragIcon type="primary"/> : false }
       <ConstructorElement 
         extraClass={cn("ml-2", { "ml-8": isLocked }, extraClass)}
-        isLocked={isLocked} 
+        isLocked={isLocked}
         {...others}
       />
     </div>
