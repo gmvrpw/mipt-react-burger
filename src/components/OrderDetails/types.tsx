@@ -1,4 +1,4 @@
 export interface OrderDetailsProps {
-  orderNumber: string,
+  orderNumber: number,
   className?: string,
 }
