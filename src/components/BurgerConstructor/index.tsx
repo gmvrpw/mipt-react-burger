@@ -9,7 +9,7 @@ import useBurgerConstructorScheme from '../../store/hooks/burgerConstructorSchem
 
 import Modal from '../Modal';
 import OrderDetails from '../OrderDetails';
-import DragableConstructorElement from '../DragableConstructorElement';
+import DraggableConstructorElement from '../DraggableConstructorElement';
 
 import styles from './index.module.css';
 import { BurgerConstructorProps } from './types';
@@ -32,18 +32,18 @@ const BurgerConstructor: React.FC<BurgerConstructorProps> = ({ className }) => {
   return (
     <>
       <article ref={drop} className={cn(styles.container, "pt-25 pb-10", className)}>
-        {scheme.bun ? <DragableConstructorElement
+        {scheme.bun && <DraggableConstructorElement
           index={-1}
           type="top"
           thumbnail={scheme.bun.image_mobile}
           text={`${scheme.bun.name} (верх)`}
           price={scheme.bun.price}
           isLocked={true}
-        /> : false}
+        />}
         <div className={cn(styles.ingredients, "mt-4 mb-4")}>
-          {scheme.ingredients.map(({ image, name, price }, index) => (
-            <DragableConstructorElement
-              key={index}
+          {scheme.ingredients.map(({ key, image, name, price }, index) => (
+            <DraggableConstructorElement
+              key={key}
               index={index}
               thumbnail={image}
               text={name}
@@ -52,14 +52,14 @@ const BurgerConstructor: React.FC<BurgerConstructorProps> = ({ className }) => {
             />
           ))}
         </div>
-        {scheme.bun ? <DragableConstructorElement
+        {scheme.bun && <DraggableConstructorElement
           index={-1}
           type="bottom"
           thumbnail={scheme.bun.image_mobile}
           text={`${scheme.bun.name} (низ)`}
           price={scheme.bun.price}
           isLocked={true}
-        /> : false}
+        />}
         <div className={cn(styles.total, "mt-10")}>
           <div className={cn(styles.price, "mr-10")}>
             <p className="text text_type_digits-medium mr-2">{totalPrice}</p>

@@ -1,12 +1,12 @@
 import cn from 'classnames';
 import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components"
 
-import { DragableConstructorElementProps } from "./types"
+import { DraggableConstructorElementProps } from "./types"
 import styles from './index.module.css';
 import { useDrag, useDrop } from 'react-dnd';
 import useBurgerConstructorScheme from '../../store/hooks/burgerConstructorScheme';
 
-const DragableConstructorElement: React.FC<DragableConstructorElementProps> = ({ index, extraClass, isLocked, ...others }) => {
+const DraggableConstructorElement: React.FC<DraggableConstructorElementProps> = ({ index, extraClass, isLocked, ...others }) => {
   const [, { moveIngredient }] = useBurgerConstructorScheme()
 
   const [, drag] = useDrag(() => ({
@@ -32,4 +32,4 @@ const DragableConstructorElement: React.FC<DragableConstructorElementProps> = ({
   )
 }
 
-export default DragableConstructorElement;
+export default DraggableConstructorElement;

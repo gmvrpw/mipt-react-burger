@@ -1,9 +1,10 @@
 import Nullable from "../../../types/nullable"
+import { IngredientWithKey } from "../../reducers/burgerConstructor/types";
 import { Ingredient } from "../../types/ingredient";
 
 type BurgerConstructorScheme = {
   bun: Nullable<Ingredient>,
-  ingredients: Ingredient[],
+  ingredients: IngredientWithKey[],
 }
 
 type BurgerConstructorSchemeHook = () => [

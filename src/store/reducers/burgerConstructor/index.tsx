@@ -2,7 +2,7 @@ import { createReducer } from "@reduxjs/toolkit";
 import * as A from "../../actions/burgerConstructor";
 
 import { BurgerConstructorState } from "./types";
-import { changeCount } from "./utils";
+import { changeCount, keyGenerator } from "./utils";
 
 const initialState: BurgerConstructorState = {
   bun: null,
@@ -21,7 +21,7 @@ const burgerConstructorReducer = createReducer(initialState, (builder) => {
         changeCount(state.bun._id, state, 2)
         return;
       }
-      state.ingredients.push(action.payload);
+      state.ingredients.push({ key: keyGenerator(), ...action.payload });
       changeCount(action.payload._id, state, 1)
     })
     .addCase(A.moveIngredient, (state, action) => {
