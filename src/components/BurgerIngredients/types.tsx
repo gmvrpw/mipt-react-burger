@@ -8,6 +8,5 @@ export type Category = {
 }
 
 export interface BurgerIngredientsProps {
-  ingredients: Ingredient[],
   className?: string,
 }

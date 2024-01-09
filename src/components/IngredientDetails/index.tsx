@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import cn from 'classnames';
 
 import { componentsTitles, defaultComponentTitle } from './consts';
@@ -10,12 +9,12 @@ const IngredientDetails: React.FC<IngredientDetailsProps> = ({
   className 
 }) => {
   const { image_large, name, calories, proteins, fat, carbohydrates } = ingredient;
-  const components = useMemo(() => ([
+  const components = [
     { type: "calories", value: calories },
     { type: "proteins", value: proteins },
     { type: "fat", value: fat }, 
     { type: "carbohydrates", value: carbohydrates },
-  ]), [fat, calories, proteins, carbohydrates])
+  ];
 
   return(
     <article className={cn(styles.details, className)}>

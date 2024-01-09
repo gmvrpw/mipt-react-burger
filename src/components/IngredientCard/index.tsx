@@ -5,20 +5,27 @@ import { Counter, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-c
 
 import Modal from "../Modal";
 import IngredientDetails from "../IngredientDetails";
-import { useBoolean } from "../../hooks/useBoolean";
 
 import { IngredientCardProps } from "./types";
 import styles from './index.module.css';
+import { useDrag } from "react-dnd";
+import useIngredient from "../../store/hooks/ingredient";
 
 const IngredientCard: React.FC<IngredientCardProps> = ({ 
   ingredient, 
   count = 0,
   className,
 }) => {
-  const [showDetails, open, close] = useBoolean(false);
+  const [, drag] = useDrag(() => ({
+    type: 'ingredient',
+    item: ingredient, 
+  }));
+
+  const [selected, { selectIngredient, clearIngredient }] = useIngredient();
+  
   return (
     <>
-      <article className={cn(styles.container, className)} onClick={open}>
+      <article ref={drag} className={cn(styles.container, className)} onClick={() => selectIngredient(ingredient)}>
         <img className={cn(styles.image, "pl-4 pr-4")} src={ingredient.image} alt={ingredient.name}/>
         <div className={cn(styles.price, "mt-1 mb-4")}>
           <p className="text text_type_digits-default mr-2">{ingredient.price}</p>
@@ -31,12 +38,12 @@ const IngredientCard: React.FC<IngredientCardProps> = ({
             false
         }
       </article>
-      {showDetails && <Modal 
+      {selected && <Modal 
         title="Детали инградиента"
-        close={close}
+        close={clearIngredient}
       >
         <IngredientDetails
-          ingredient={ingredient}
+          ingredient={selected}
           className="mb-5" 
         />
       </Modal>}

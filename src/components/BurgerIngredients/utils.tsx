@@ -3,7 +3,11 @@ import { Ingredient } from "../../resources/ingredients/types";
 import { categoryKey, categoryTitle, titlePlaceholder } from "./consts";
 import { Category } from "./types";
 
-export const getCategories = (ingredients: Ingredient[]): Category[] => {
+export const getCategories = (ingredients: Ingredient[] | Record<string, Ingredient>): Category[] => {
+  if (!Array.isArray(ingredients)) {
+    ingredients = Object.values(ingredients);
+  }
+
   let keyPlaceholder = Object.keys(categoryKey).length;
 
   return Object.values(ingredients.reduce((acc, ingredient) => { 
@@ -12,13 +16,13 @@ export const getCategories = (ingredients: Ingredient[]): Category[] => {
       return acc;
     }
  
-   acc[ingredient.type] = {
+    acc[ingredient.type] = {
       key: categoryKey[ingredient.type] ?? keyPlaceholder++,
       type: ingredient.type,
       title: categoryTitle[ingredient.type] ?? titlePlaceholder,
       ingredients: [ingredient],
     }
     return acc;
-  }, 
-  {} as Record<string, Category>)).sort((a, b) => (a.key - b.key))
+  }, {} as Record<string, Category>))
+  .sort((a, b) => (a.key - b.key))
 }
